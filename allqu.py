@@ -17,15 +17,15 @@ def main ():
     with cent_co:
         with st.container(): 
             st.image(image="images/logotry.jpg",width=196)
-    st.title("ALLQ'U Veterinaria")
+    st.title("ALLQ'U Vetrinaria")
     # Definir Header/Subheader
     st.header("Av. Manco Capac 175")
     # Definir un Texto
-    # st.text("Algún texto a añadir preguntar cris")
+    #st.text("Algún texto a añadir preguntar cris")
     
     #Pestañas
-    titulos_pestanas = ['Reservar atención']
-    pestaña1 = st.tabs(titulos_pestanas)
+    titulos_pestanas = ['Reservar atención', 'Galería', 'Reseñas','Nosotros']
+    pestaña1, pestaña2, pestaña3,pestaña4 = st.tabs(titulos_pestanas)
     with pestaña1:
         st.header("Nombre")
         nombre=st.text_input("Escriba su nombre (obligatorio):")
@@ -205,7 +205,21 @@ def main ():
                 st.success("Su reserva se ha registrado con éxito")
                 
                 
-                            
+                                
+        
+    
+    with pestaña2:
+        st.header('Tema B')
+        st.write('Contenido del tema B')
+    
+    with pestaña3:
+        st.header('Tema C')
+        st.write('Contenido del tema C')
+    with pestaña4:
+        st.header('Tema D')
+        st.write('Contenido del tema D')
+    
+    
     
 if __name__ == "__main__":
     main()
