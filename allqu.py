@@ -25,7 +25,7 @@ def main ():
     
     #Pestañas
     titulos_pestanas = ['Reservar atención']
-    pestaña1, pestaña2, pestaña3,pestaña4 = st.tabs(titulos_pestanas)
+    pestaña1 = st.tabs(titulos_pestanas)
     with pestaña1:
         st.header("Nombre")
         nombre=st.text_input("Escriba su nombre (obligatorio):")
