@@ -24,7 +24,7 @@ def main ():
     # st.text("Algún texto a añadir preguntar cris")
     
     #Pestañas
-    titulos_pestanas = ['Reservar atención', 'Galería', 'Reseñas','Nosotros']
+    titulos_pestanas = ['Reservar atención']
     pestaña1, pestaña2, pestaña3,pestaña4 = st.tabs(titulos_pestanas)
     with pestaña1:
         st.header("Nombre")
@@ -205,21 +205,7 @@ def main ():
                 st.success("Su reserva se ha registrado con éxito")
                 
                 
-                                
-        
-    '''
-    with pestaña2:
-        st.header('Tema B')
-        st.write('Contenido del tema B')
-    
-    with pestaña3:
-        st.header('Tema C')
-        st.write('Contenido del tema C')
-    with pestaña4:
-        st.header('Tema D')
-        st.write('Contenido del tema D')
-    
-    '''
+                            
     
 if __name__ == "__main__":
     main()
