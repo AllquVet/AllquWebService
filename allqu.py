@@ -21,7 +21,7 @@ def main ():
     # Definir Header/Subheader
     st.header("Av. Manco Capac 175")
     # Definir un Texto
-    st.text("Algún texto a añadir preguntar cris")
+    # st.text("Algún texto a añadir preguntar cris")
     
     #Pestañas
     titulos_pestanas = ['Reservar atención', 'Galería', 'Reseñas','Nosotros']
@@ -207,7 +207,7 @@ def main ():
                 
                                 
         
-    
+    '''
     with pestaña2:
         st.header('Tema B')
         st.write('Contenido del tema B')
@@ -219,7 +219,7 @@ def main ():
         st.header('Tema D')
         st.write('Contenido del tema D')
     
-    
+    '''
     
 if __name__ == "__main__":
     main()
