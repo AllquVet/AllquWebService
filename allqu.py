@@ -17,7 +17,7 @@ def main ():
     with cent_co:
         with st.container(): 
             st.image(image="images/logotry.jpg",width=196)
-    st.title("ALLQ'U Vetrinaria")
+    st.title("ALLQ'U Veterinaria")
     # Definir Header/Subheader
     st.header("Av. Manco Capac 175")
     # Definir un Texto
