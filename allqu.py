@@ -17,46 +17,75 @@ def main ():
     with cent_co:
         with st.container(): 
             st.image(image="images/logotry.jpg",width=196)
-    st.title("ALLQ'U Vetrinaria")
+    st.title("ALLQ'U Consultorio Veterinario")
     # Definir Header/Subheader
-    st.header("Av. Manco Capac 175")
+    st.header("Av. Manco Capac 175-Los Baños del Inca")
     # Definir un Texto
-    #st.text("Algún texto a añadir preguntar cris")
+    st.text('"'+"Cuidamos a tu mascota con amor y ciencia"+'"')
     
     #Pestañas
     titulos_pestanas = ['Reservar atención', 'Galería', 'Reseñas','Nosotros']
     pestaña1, pestaña2, pestaña3,pestaña4 = st.tabs(titulos_pestanas)
     with pestaña1:
-        st.header("Nombre")
-        nombre=st.text_input("Escriba su nombre (obligatorio):")
+        st.subheader("¿Cuál es tu nombre completo?")
+        nombre=st.text_input("Nombre (obligatorio):")
         st.write("La atención es para:",nombre)
-        
-        st.header("Correo")
-        correo=st.text_input("Escriba su correo (obligatorio):")
-        st.write("Su correo es:",correo)
-        
-        st.header("Celular")
-        celular=st.text_input("Digite su celular (obligatorio):")
+        st.subheader("¿Cuál es su numero de celular para contactarlo?")
+        celular=st.text_input("Celular (obligatorio):")
         st.write("Su celular es:",celular)
-        st.subheader("Elija el servicio:")
+        correo_check=st.checkbox("¿Desea agregar un correo?")
+        if  correo_check:
+            st.subheader("Por pavor escriba su correo")
+            correo=st.text_input("Escriba su correo:")
+            st.write("Su correo es:",correo)
+        st.subheader("¿Qué servicio está requiriendo para su mascota?:")
         # SelectBox
-        servicio = st.selectbox("Seleccione", 
-                                ["Corte de pelo", "Baño", "Corte y baño", "Consulta"])
-        st.write("Opción seleccionada:", servicio)
+        servicio = st.selectbox("Seleccione:", 
+                                [
+                                    "Baño medicado (S/. 10.00*)",
+                                    "Baño simple razas pequeñas(S/. 25.00*)" ,
+                                    "Baño simple razas medianas(S/. 35.00*)" ,
+                                    "Baño simple razas grandes(S/. 50.00*)",
+                                    "Baño y corte razas pequeñas(S/. 35.00*)",
+                                    "Baño y corte razas medianas(S/. 45.00*)", 
+                                    "Baño y corte razas grandes(S/. 70.00*)",
+                                    "Baño gatos (S/. 30.00*)",
+                                    "Reserva baño (S/. 10.00*)",
+                                    "Reserva baño y corte (S/. 25.00*)",
+                                    "Consulta"],index=None)
+        #st.write("Opción seleccionada:", servicio)
+        st.write("*El precio puede variar dependiendo del estado en el que se encuentre su mascota")
+        motivo_consulta=""
+        if servicio=="Consulta":
+            
+            motivo_consulta=st.text_input("Por favor indique el motivo de la consulta")
+        
+        #Transporte service
+        if servicio!=None:
+            bttransporte=st.checkbox("¿Desea agregar el servicio de transporte de mascota? (Tarifa adicional dependiendo de la distancia)")
+            if bttransporte:
+                transporte=st.selectbox("Seleccione la opción mas conveniente",
+                                        ["Recojo de mascota",
+                                        "Entrega de mascota",
+                                        "Recojo y entrega de mascota"
+                                        ])
         # MultiSelect
-        st.subheader("Fecha")
+        st.subheader("Qué fecha desea su reserva")
         
         calendar=GoogleCalendarManager()
-        d = st.date_input("Fecha de ateción",min_value=dt.datetime.now(),max_value=dt.datetime.now()+dt.timedelta(days=8))
-        st.write("La fecha seleccionada es:", d)
+        d = st.date_input("Fecha:",min_value=dt.datetime.now(),max_value=dt.datetime.now()+dt.timedelta(days=8),format="DD/MM/YYYY")
+        #st.write("La fecha seleccionada es:", d)
         #Seleccionar hora comprobar calendar
-        st.subheader("Hora")
+        st.subheader("¿A qué hora desea su reserva")
         #print("Inicio____________")
         hora_global=dt.datetime.now(dt.UTC)
         hora_peru=(hora_global-dt.timedelta(hours=5))
+        fecha_actual=dt.datetime.now(dt.UTC)
+        fecha_actual_peru=fecha_actual-dt.timedelta(hours=5)
+
         hora_actual=str(hora_peru.time().replace(minute=0,second=0,microsecond=0))[0:5]
         horas_service=["10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00"]
-        if d==dt.datetime.now(dt.timezone.utc).date():
+        if d==fecha_actual_peru.date():
             start_day=(str(d)+"T"+str(((dt.datetime.now().time()).replace(second=0,microsecond=0))))+"-05:00"
             end_day = str(d)+"T23:59:00"+ "-07:00"
             
@@ -114,18 +143,18 @@ def main ():
         for e in lista_horas:
             if e in horas_service:
                 horas_service.remove(e)
-        hora=st.selectbox("Seleccione una hora",horas_service)
+        hora=st.selectbox("Seleccione una hora:",horas_service)
         print("Hora")
         print(hora)
         print(horas_service)
         print("#")
         
         #Boton reservar
-        reservar=st.button("Reservar")
-        if reservar:
-            if not nombre or not correo or not celular or not servicio or hora=="":
+        if not nombre or not correo or not celular or not servicio or hora=="":
                 st.warning("Debe rellenar los campos requeridos o no hay horarios disponibles para este día")
-            else:
+        else:
+            reservar=st.button("Reservar")
+            if reservar:
                 #mandar calendrio 
                 aux=['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00']
                 eventoTitle=servicio
@@ -176,7 +205,7 @@ def main ():
                 google = GoogleSheet(file_name_gs, google_sheet, sheet_name)
 
 
-                value =[[nombre,correo,celular,servicio,str(d),str(hora),uid]]
+                value =[[nombre,correo,celular,servicio,str(d),str(hora),str(motivo_consulta),transporte,uid]]
                 range = google.get_last_row_range()
                 google.get_all_values()
                 google.write_data(range,value)
@@ -186,23 +215,40 @@ def main ():
 
                 my_mail=os.getenv("username")
                 yourpassword=os.getenv("gmail_password")
-                email_receiver=correo
+                if correo!=None:
+                    email_receiver=correo
+                    #Correo cliente
 
-                subject="Confirmación de reserva para "+servicio
-                body="Estmad@ "+nombre+"\nSe confirma la reserva de su atención a las..."
+                    subject="Confirmación de reserva para "+servicio
+                    body="Estmad@ "+nombre+"\n\nNos complace informarle que su reserva para el sercicio de "+ servicio +" de su mascota ha sido confirmada."+"\n\nDetalles de la reserva:"+f"\n-Servicio: {servicio}"+f"\n-Fecha: {d}"+f"\n-Hora {hora}"+"\n-Ubicación: Av Manco Capac 175, Los Baños del Inca"+"\n\nPor favor, asegúrese de llegar 10 minutos antes de la hora programada y traiga los documentos o accesorios necesarios (cartilla de vacunación, correa, etc., según aplique).\n\nSi tiene alguna pregunta o necesita modificar la cita, no dude en contactarnos al [número de contacto] o responder a este correo.\n\n¡Gracias por confiar en nosotros para cuidar de [nombre de la mascota]!\n\nAtentamente\nAllq'u Pet Barber Shop"
+                    
+                    
 
+                    em=EmailMessage()
+                    em["From"]=my_mail
+                    em["To"]=email_receiver
+                    em["Subject"]=subject
+                    em.set_content(body)
+                    with smtplib.SMTP_SSL('smtp.gmail.com',465) as connection:
+                        connection.login(user=my_mail,password=yourpassword)
+                        connection.sendmail(from_addr=my_mail,
+                                            to_addrs=email_receiver,
+                                            msg=em.as_string())
+                
+                subject_to_aq="Se ha reservado una cita de"+servicio
+                body_to_aq=nombre+"ha reservado una cita a las"+hora+"del día"+str(d)
                 em=EmailMessage()
                 em["From"]=my_mail
-                em["To"]=email_receiver
-                em["Subject"]=subject
-                em.set_content(body)
+                em["To"]=my_mail
+                em["Subject"]=subject_to_aq
+                em.set_content(body_to_aq)
                 with smtplib.SMTP_SSL('smtp.gmail.com',465) as connection:
                     connection.login(user=my_mail,password=yourpassword)
                     connection.sendmail(from_addr=my_mail,
-                                        to_addrs=email_receiver,
-                                        msg=em.as_string())
+                                            to_addrs=my_mail,
+                                            msg=em.as_string())
                 
-                st.write("UID event: "+code_event)
+                #st.write("UID event: "+code_event)
                 st.success("Su reserva se ha registrado con éxito")
                 
                 
@@ -210,14 +256,14 @@ def main ():
         
     
     with pestaña2:
-        st.header('Building')
+        st.header('Tema B')
         st.write('Contenido del tema B')
     
     with pestaña3:
-        st.header('Building')
+        st.header('Tema C')
         st.write('Contenido del tema C')
     with pestaña4:
-        st.header('Building')
+        st.header('Tema D')
         st.write('Contenido del tema D')
     
     
