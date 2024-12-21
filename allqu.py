@@ -27,6 +27,9 @@ def main ():
     titulos_pestanas = ['Reservar atención', 'Galería', 'Reseñas','Nosotros']
     pestaña1, pestaña2, pestaña3,pestaña4 = st.tabs(titulos_pestanas)
     with pestaña1:
+        st.subheader("¿Cómo se llama su mascota?")
+        mascota=st.text_input("Nombre mascota (obligatorio):")
+        st.write("La atención es para:",mascota)
         st.subheader("¿Cuál es tu nombre completo?")
         nombre=st.text_input("Nombre (obligatorio):")
         st.write("La atención es para:",nombre)
@@ -69,6 +72,8 @@ def main ():
                                         "Entrega de mascota",
                                         "Recojo y entrega de mascota"
                                         ])
+            else:
+                transporte=""
         # MultiSelect
         st.subheader("Qué fecha desea su reserva")
         
@@ -84,36 +89,33 @@ def main ():
         fecha_actual_peru=fecha_actual-dt.timedelta(hours=5)
 
         hora_actual=str(hora_peru.time().replace(minute=0,second=0,microsecond=0))[0:5]
-        horas_service=["10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00"]
+        horas_service=["10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00"]
         if d==fecha_actual_peru.date():
             start_day=(str(d)+"T"+str(((dt.datetime.now().time()).replace(second=0,microsecond=0))))+"-05:00"
             end_day = str(d)+"T23:59:00"+ "-07:00"
             
             if hora_actual=="10:00":
-                horas_service=["11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00"]
+                horas_service=["11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00"]
             elif hora_actual=="11:00":
-                horas_service=["12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00"]
+                horas_service=["12:00","13:00","14:00","15:00","16:00","17:00","18:00"]
                 
             elif hora_actual=="12:00":
-                horas_service=["13:00","14:00","15:00","16:00","17:00","18:00","19:00"]
+                horas_service=["13:00","14:00","15:00","16:00","17:00","18:00"]
                 
             elif hora_actual=="13:00":
-                horas_service=["14:00","15:00","16:00","17:00","18:00","19:00"]
+                horas_service=["14:00","15:00","16:00","17:00","18:00"]
                 
             elif hora_actual=="14:00":
-                horas_service=["15:00","16:00","17:00","18:00","19:00"]
+                horas_service=["15:00","16:00","17:00","18:00"]
                 
             elif hora_actual=="15:00":
-                horas_service=["16:00","17:00","18:00","19:00"]
+                horas_service=["16:00","17:00","18:00"]
                 
             elif hora_actual=="16:00":
-                horas_service=["17:00","18:00","19:00"]
+                horas_service=["17:00","18:00"]
                 
             elif hora_actual=="17:00":
-                horas_service=["18:00","19:00"]
-                
-            elif hora_actual=="18:00":
-                horas_service=["19:00"]
+                horas_service=["18:00"]
             else:
                 horas_service=[""]
                 
@@ -205,7 +207,7 @@ def main ():
                 google = GoogleSheet(file_name_gs, google_sheet, sheet_name)
 
 
-                value =[[nombre,correo,celular,servicio,str(d),str(hora),str(motivo_consulta),transporte,uid]]
+                value =[[mascota,nombre,correo,celular,servicio,str(d),str(hora),str(motivo_consulta),transporte,uid]]
                 range = google.get_last_row_range()
                 google.get_all_values()
                 google.write_data(range,value)
@@ -220,7 +222,7 @@ def main ():
                     #Correo cliente
 
                     subject="Confirmación de reserva para "+servicio
-                    body="Estmad@ "+nombre+"\n\nNos complace informarle que su reserva para el sercicio de "+ servicio +" de su mascota ha sido confirmada."+"\n\nDetalles de la reserva:"+f"\n-Servicio: {servicio}"+f"\n-Fecha: {d}"+f"\n-Hora {hora}"+"\n-Ubicación: Av Manco Capac 175, Los Baños del Inca"+"\n\nPor favor, asegúrese de llegar 10 minutos antes de la hora programada y traiga los documentos o accesorios necesarios (cartilla de vacunación, correa, etc., según aplique).\n\nSi tiene alguna pregunta o necesita modificar la cita, no dude en contactarnos al [número de contacto] o responder a este correo.\n\n¡Gracias por confiar en nosotros para cuidar de [nombre de la mascota]!\n\nAtentamente\nAllq'u Pet Barber Shop"
+                    body="Estmad@ "+nombre+"\n\nNos complace informarle que su reserva para el sercicio de "+ servicio +" de su mascota ha sido confirmada."+"\n\nDetalles de la reserva:"+f"\n-Servicio: {servicio}"+f"\n-Fecha: {d}"+f"\n-Hora {hora}"+"\n-Ubicación: Av Manco Capac 175, Los Baños del Inca"+"\n\nPor favor, asegúrese de llegar 10 minutos antes de la hora programada y traiga los documentos o accesorios necesarios (cartilla de vacunación, correa, etc., según aplique).\n\nSi tiene alguna pregunta o necesita modificar la cita, no dude en contactarnos al [número de contacto] o responder a este correo.\n\n¡Gracias por confiar en nosotros para cuidar de"+ mascota+"!\n\nAtentamente\nAllq'u Pet Barber Shop"
                     
                     
 
@@ -235,8 +237,9 @@ def main ():
                                             to_addrs=email_receiver,
                                             msg=em.as_string())
                 
-                subject_to_aq="Se ha reservado una cita de"+servicio
-                body_to_aq=nombre+"ha reservado una cita a las"+hora+"del día"+str(d)
+                subject_to_aq="Reenvío de reservación de cita->"+servicio
+                body_to_aq="Estmad@ "+nombre+"\n\nNos complace informarle que su reserva para el sercicio de "+ servicio +" de su mascota ha sido confirmada."+"\n\nDetalles de la reserva:"+f"\n-Servicio: {servicio}"+f"\n-Fecha: {d}"+f"\n-Hora {hora}"+"\n-Ubicación: Av Manco Capac 175, Los Baños del Inca"+"\n\nPor favor, asegúrese de llegar 10 minutos antes de la hora programada y traiga los documentos o accesorios necesarios (cartilla de vacunación, correa, etc., según aplique).\n\nSi tiene alguna pregunta o necesita modificar la cita, no dude en contactarnos al 959403782 o responder a este correo.\n\n¡Gracias por confiar en nosotros para cuidar de"+ mascota+"!\n\nAtentamente\nAllq'u Consultorio Veterinario"
+                    
                 em=EmailMessage()
                 em["From"]=my_mail
                 em["To"]=my_mail
