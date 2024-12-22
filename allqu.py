@@ -17,15 +17,16 @@ def main ():
     with cent_co:
         with st.container(): 
             st.image(image="images/logotry.jpg",width=196)
-    st.title("ALLQ'U Consultorio Veterinario")
-    # Definir Header/Subheader
-    st.header("Av. Manco Capac 175-Los Baños del Inca")
+    st.header("ALLQ'U Consultorio Veterinario")
     # Definir un Texto
     st.text('"'+"Cuidamos a tu mascota con amor y ciencia"+'"')
+    # Definir Header/Subheader
+    st.text("Av. Manco Capac 175-Los Baños del Inca")
+    
     
     #Pestañas
-    titulos_pestanas = ['Reservar atención', 'Galería', 'Reseñas','Nosotros']
-    pestaña1, pestaña2, pestaña3,pestaña4 = st.tabs(titulos_pestanas)
+    titulos_pestanas = ['Reservar atención', 'Galería','Nosotros']
+    pestaña1, pestaña2, pestaña3 = st.tabs(titulos_pestanas)
     with pestaña1:
         st.subheader("¿Cómo se llama su mascota?")
         mascota=st.text_input("Nombre mascota (obligatorio):")
@@ -117,7 +118,7 @@ def main ():
             elif hora_actual=="17:00":
                 horas_service=["18:00"]
             else:
-                horas_service=[""]
+                horas_service=[]
                 
             
         else:
@@ -265,9 +266,6 @@ def main ():
     with pestaña3:
         st.header('Tema C')
         st.write('Contenido del tema C')
-    with pestaña4:
-        st.header('Tema D')
-        st.write('Contenido del tema D')
     
     
     
