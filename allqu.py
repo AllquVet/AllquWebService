@@ -122,7 +122,7 @@ def main ():
                 
             
         else:
-            start_day=(str(d)+"T"+str(((dt.datetime.now().time()).replace(hour=8,minute=0,second=0,microsecond=0))))+"-05:00"
+            start_day=(str(d)+"T"+str(((fecha_actual_peru.time()).replace(hour=8,minute=0,second=0,microsecond=0))))+"-05:00"
             end_day = str(d)+"T23:59:00"+ "-07:00"
         #start_day = dt.datetime.utcnow().isoformat() + "-07:00"
         #start_day="2024-11-13T08:00:00Z"
