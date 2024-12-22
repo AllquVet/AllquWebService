@@ -79,7 +79,7 @@ def main ():
         st.subheader("Qué fecha desea su reserva")
         
         calendar=GoogleCalendarManager()
-        d = st.date_input("Fecha:",min_value=dt.datetime.now(),max_value=dt.datetime.now()+dt.timedelta(days=8),format="DD/MM/YYYY")
+        d = st.date_input("Fecha:",min_value=fecha_actual_peru,max_value=fecha_actual_peru+dt.timedelta(days=8),format="DD/MM/YYYY")
         #st.write("La fecha seleccionada es:", d)
         #Seleccionar hora comprobar calendar
         st.subheader("¿A qué hora desea su reserva")
