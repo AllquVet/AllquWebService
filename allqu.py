@@ -265,8 +265,8 @@ def main ():
         st.write('Contenido del tema B')
     
     with pestaña3:
-        st.header('Tema C')
-        st.write('En construcción')
+        st.header('En construcción')
+        st.write('Contenido del tema C')
     
     
     
