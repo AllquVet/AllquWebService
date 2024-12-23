@@ -83,7 +83,7 @@ def main ():
         hora_peru=(hora_global-dt.timedelta(hours=5))
         fecha_actual=dt.datetime.now(dt.UTC)
         fecha_actual_peru=fecha_actual-dt.timedelta(hours=5)
-        d = st.date_input("Fecha:",min_value=fecha_actual_peru,max_value=fecha_actual_peru+dt.timedelta(days=8),format="DD/MM/YYYY")
+        d = st.date_input("Fecha:",max_value=fecha_actual_peru+dt.timedelta(days=8),format="DD/MM/YYYY")
         #st.write("La fecha seleccionada es:", d)
         #Seleccionar hora comprobar calendar
         st.subheader("¿A qué hora desea su reserva")
