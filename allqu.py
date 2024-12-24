@@ -226,7 +226,7 @@ def main ():
                     #Correo cliente
 
                     subject="Confirmación de reserva para "+servicio
-                    body="Estmad@ "+nombre+"\n\nNos complace informarle que su reserva para el sercicio de "+ servicio +" de su mascota ha sido confirmada."+"\n\nDetalles de la reserva:"+f"\n-Servicio: {servicio}"+f"\n-Fecha: {d}"+f"\n-Hora {hora}"+"\n-Ubicación: Av Manco Capac 175, Los Baños del Inca"+"\n\nPor favor, asegúrese de llegar 10 minutos antes de la hora programada y traiga los documentos o accesorios necesarios (cartilla de vacunación, correa, etc., según aplique).\n\nSi tiene alguna pregunta o necesita modificar la cita, no dude en contactarnos al [número de contacto] o responder a este correo.\n\n¡Gracias por confiar en nosotros para cuidar de"+ mascota+"!\n\nAtentamente\nAllq'u Pet Barber Shop"
+                    body="Estmad@ "+nombre+"\n\nNos complace informarle que su reserva para el sercicio de "+ servicio +" de su mascota ha sido confirmada."+"\n\nDetalles de la reserva:"+f"\n-Servicio: {servicio}"+f"\n-Fecha: {d}"+f"\n-Hora {hora}"+"\n-Ubicación: Av Manco Capac 175, Los Baños del Inca"+"\n\nPor favor, asegúrese de llegar 10 minutos antes de la hora programada y traiga los documentos o accesorios necesarios (cartilla de vacunación, correa, etc., según aplique).\n\nSi tiene alguna pregunta o necesita modificar la cita, no dude en contactarnos al 959403782 o responder a este correo.\n\n¡Gracias por confiar en nosotros para cuidar de"+ mascota+"!\n\nAtentamente\nAllq'u Pet Barber Shop"
                     
                     
 
