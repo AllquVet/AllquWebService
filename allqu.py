@@ -41,7 +41,7 @@ def main ():
         st.write("Su celular es:",celular)
         correo_check=st.checkbox("¿Desea agregar un correo?")
         if  correo_check:
-            st.subheader("Por favor escriba su correo")
+            st.subheader("Por pavor escriba su correo")
             correo=st.text_input("Escriba su correo:")
             st.write("Su correo es:",correo)
         st.subheader("¿Qué servicio está requiriendo para su mascota?:")
@@ -90,12 +90,15 @@ def main ():
         #Seleccionar hora comprobar calendar
         st.subheader("¿A qué hora desea su reserva")
         #print("Inicio____________")
+        print(d)
         
 
         hora_actual=str(hora_peru.time().replace(minute=0,second=0,microsecond=0))[0:5]
         horas_service=["10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00"]
+        print(fecha_actual)
+        print(fecha_actual_peru)
         if d==fecha_actual_peru.date():
-            start_day=(str(d)+"T"+str(((dt.datetime.now(dt.UTC).time()).replace(second=0,microsecond=0))))+"-05:00"
+            start_day=(str(d)+"T"+str(((fecha_actual_peru.time()).replace(second=0,microsecond=0))))+"-05:00"
             end_day = str(d)+"T23:59:00"+ "-05:00"
             
             if hora_actual=="10:00":
@@ -120,12 +123,10 @@ def main ():
                 
             elif hora_actual=="17:00":
                 horas_service=["18:00"]
-            else:
-                horas_service=[]
                 
             
         else:
-            start_day=(str(d)+"T"+str(((dt.datetime.now(dt.UTC).time()).replace(hour=8,minute=0,second=0,microsecond=0))))+"-05:00"
+            start_day=(str(d)+"T"+str(((fecha_actual.time()).replace(hour=8,minute=0,second=0,microsecond=0))))+"-05:00"
             end_day = str(d)+"T23:59:00"+ "-05:00"
         #start_day = dt.datetime.utcnow().isoformat() + "-07:00"
         #start_day="2024-11-13T08:00:00Z"
@@ -153,7 +154,7 @@ def main ():
         print("Hora")
         print(hora)
         print(horas_service)
-        print("#")
+        print("FIN")
         
         #Boton reservar
         if not nombre or not correo or not celular or not servicio or hora=="":
