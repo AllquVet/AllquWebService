@@ -124,6 +124,18 @@ def main ():
             elif hora_actual=="17:00":
                 horas_service=["18:00"]
                 
+            elif hora_actual=="18:00":
+                horas_service=[]
+            elif hora_actual=="19:00":
+                horas_service=[]
+            elif hora_actual=="20:00":
+                horas_service=[]
+            elif hora_actual=="21:00":
+                horas_service=[]
+            elif hora_actual=="22:00":
+                horas_service=[]
+            elif hora_actual=="23:00":
+                horas_service=[]
             
         else:
             start_day=(str(d)+"T"+str(((fecha_actual.time()).replace(hour=8,minute=0,second=0,microsecond=0))))+"-05:00"
