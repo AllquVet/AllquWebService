@@ -21,6 +21,8 @@ def main ():
     # Definir un Texto
     st.text('"'+"Cuidamos a tu mascota con amor y ciencia"+'"')
     # Definir Header/Subheader
+    url_to_wsp = "https://wa.link/wc5vh4"
+    st.markdown("Contacto: [959403782](%s)"%url_to_wsp)
     st.text("Av. Manco Capac 175-Los Baños del Inca")
     
     
