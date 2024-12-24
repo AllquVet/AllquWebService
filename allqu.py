@@ -95,7 +95,7 @@ def main ():
         hora_actual=str(hora_peru.time().replace(minute=0,second=0,microsecond=0))[0:5]
         horas_service=["10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00"]
         if d==fecha_actual_peru.date():
-            start_day=(str(d)+"T"+str(((dt.datetime.now().time()).replace(second=0,microsecond=0))))+"-05:00"
+            start_day=(str(d)+"T"+str(((dt.datetime.now(dt.UTC).time()).replace(second=0,microsecond=0))))+"-05:00"
             end_day = str(d)+"T23:59:00"+ "-05:00"
             
             if hora_actual=="10:00":
@@ -125,7 +125,7 @@ def main ():
                 
             
         else:
-            start_day=(str(d)+"T"+str(((dt.datetime.now().time()).replace(hour=8,minute=0,second=0,microsecond=0))))+"-05:00"
+            start_day=(str(d)+"T"+str(((dt.datetime.now(dt.UTC).time()).replace(hour=8,minute=0,second=0,microsecond=0))))+"-05:00"
             end_day = str(d)+"T23:59:00"+ "-05:00"
         #start_day = dt.datetime.utcnow().isoformat() + "-07:00"
         #start_day="2024-11-13T08:00:00Z"
