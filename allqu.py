@@ -41,7 +41,7 @@ def main ():
         st.write("Su celular es:",celular)
         correo_check=st.checkbox("¿Desea agregar un correo?")
         if  correo_check:
-            st.subheader("Por pavor escriba su correo")
+            st.subheader("Por favor escriba su correo")
             correo=st.text_input("Escriba su correo:")
             st.write("Su correo es:",correo)
         st.subheader("¿Qué servicio está requiriendo para su mascota?:")
