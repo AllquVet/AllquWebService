@@ -162,7 +162,32 @@ def main ():
         for e in lista_horas:
             if e in horas_service:
                 horas_service.remove(e)
-        hora=st.selectbox("Seleccione una hora:",horas_service)
+        #convertir formato horas
+        
+        dic_horas1={    '10:00': '10:00 a.m.',
+                        '11:00': '11:00 a.m.',
+                        '12:00': '12:00 a.m.',
+                        '13:00': '1:00 p.m.',
+                        '14:00': '2:00 p.m.',
+                        '15:00': '3:00 p.m.',
+                        '16:00': '4:00 p.m.',
+                        '17:00': '5:00 p.m.',
+                        '18:00': '6:00 p.m.'}
+        horas_service_format=[]
+        for q in horas_service:
+            horas_service_format.append(dic_horas1.get(q))
+        print(horas_service_format)
+        hora_aux=st.selectbox("Seleccione una hora:",horas_service_format)
+        formato_horas={ '10:00 a.m.': '10:00',
+                        '11:00 a.m.': '11:00',
+                        '12:00 a.m.': '12:00',
+                        '13:00 p.m.': '13:00',
+                        '14:00 p.m.': '14:00',
+                        '15:00 p.m.': '15:00',
+                        '16:00 p.m.': '16:00',
+                        '17:00 p.m.': '17:00',
+                        '18:00 p.m.': '18:00'}
+        hora=formato_horas.get(hora_aux)
         print("Hora")
         print(hora)
         print(horas_service)
@@ -276,13 +301,16 @@ def main ():
         
     
     with pestaña2:
-        st.header('En construcción')
-        st.write('Contenido del tema B')
+        st.header('Nuestros clientes')
+        st.image("images/img1.jpeg")
+        st.image("images/img2.jpeg")
+        st.image("images/img3.jpeg")
+        st.image("images/img4.jpeg")
+        
     
-    with pestaña3:
-        st.header('En construcción')
-        st.write('Contenido del tema C')
-    
+    with pestaña3:        
+        st.write("Consultorio Veterinario Allq'u – Baños del Inca, Cajamarca\nEn Allq'u, nos dedicamos al bienestar de tu mascota con un enfoque profesional y humano. Bajo la dirección del Dr. Cristian Bazán Nureña, ofrecemos atención veterinaria de calidad con un trato cálido y personalizado.")
+        st.write('✨ "Cuidamos tu mascota con amor y ciencia." ✨')
     
     
 if __name__ == "__main__":
