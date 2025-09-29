@@ -10,9 +10,8 @@ from email.message import EmailMessage
 import os
 from dotenv import load_dotenv
 st.set_page_config(page_title="ALLQ'U Veterinaria",page_icon="🐕",layout="centered")
+st.html('<meta name="google-site-verification" content="umm5S2Dr_JonwHyVpBjIeSwtNc24DAtiT36ewj9HUms" />')
 def main ():
-    st.html('<meta name="google-site-verification" content="umm5S2Dr_JonwHyVpBjIeSwtNc24DAtiT36ewj9HUms" />')
-    """Generación de la webapp con streamlit"""
     # Definir título
     left_co, cent_co,last_co = st.columns(3)
     with cent_co:
@@ -316,4 +315,5 @@ def main ():
     
 if __name__ == "__main__":
     main()
+
 
